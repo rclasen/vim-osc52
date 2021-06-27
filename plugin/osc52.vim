@@ -149,15 +149,15 @@ function! s:b64encode(str, size)
     let b64[-1] = '='
   endif
 
-  let b64 = join(b64, '')
+  let rv = join(b64, '')
   if a:size <= 0
-    return b64
+    return rv
   endif
 
   let chunked = ''
-  while strlen(b64) > 0
-    let chunked .= strpart(b64, 0, a:size) . "\n"
-    let b64 = strpart(b64, a:size)
+  while strlen(rv) > 0
+    let chunked .= strpart(rv, 0, a:size) . "\n"
+    let rv = strpart(rv, a:size)
   endwhile
   return chunked
 endfun
